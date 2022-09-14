@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ColorModeScript } from '@chakra-ui/react';
+import theme from './theme';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
