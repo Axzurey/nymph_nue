@@ -3,6 +3,8 @@ import React from "react";
 import {  BsArrowRightCircleFill, BsFillFileEarmarkDiffFill } from "react-icons/bs";
 import { colors } from "../client/global";
 import { fileSEK } from "../client/muon";
+import fs from 'fs'
+import axios from 'axios'
 
 interface inputProps extends React.PropsWithChildren {
     sendClicked: (text: string, payload: string[]) => void
@@ -17,9 +19,27 @@ function NueInput(props: inputProps) {
 
     return (
         <Box pb='10' color={colors.secondaryColor}>
-            <form onSubmit={(e) => {
+            <form onSubmit={async (e) => {
                 e.preventDefault();
-                props.sendClicked(value, payload)
+                props.sendClicked(value, payload);
+
+                let formData = new FormData();
+                
+                payload.forEach(async (v) => {
+                    let [pass, fileContent] = await fileSEK.getFileContent(v)
+
+                    if (!pass) return;
+
+                    formData.append('files[]', fileContent, v)
+                })
+
+                let res = await axios({
+                    method: 'post',
+                    url: 'http://localhost:7000/nuelink/sendmessage',
+                    data: formData,
+                    headers: {'Content-Type': 'multipart/form-data'}
+                })
+                console.log(res)
                 setValue('')
             }}>
                 <Flex>

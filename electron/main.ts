@@ -1,6 +1,7 @@
 import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import * as path from 'path';
 import * as isDev from 'electron-is-dev';
+import * as fs from 'fs'
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
 
 let win: BrowserWindow | null = null;
@@ -74,4 +75,15 @@ ipcMain.handle('muon_dialog_open', async (event, args) => {
     if (res.canceled) return [false, []];
 
     return [true, res.filePaths];
+})
+
+ipcMain.handle('muon_file_content', async (event, ...args) => {
+	console.log(args)
+	try {
+		let res = fs.readFileSync(args[0], {encoding: 'utf-8'})
+		return [true, res]
+	}
+	catch (e) {
+		return [false, e]
+	}
 })
