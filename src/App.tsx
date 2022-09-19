@@ -45,7 +45,6 @@ function App() {
 	return (
         <>
             <ChakraProvider theme={theme}>
-                
                 <Navbar tabs={tabIds}/>
             </ChakraProvider>
         </>
