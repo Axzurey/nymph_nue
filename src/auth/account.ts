@@ -28,7 +28,7 @@ export async function attemptLogin(creds: loginCredentials, callback: (loggedIn:
 
 export async function attemptRegister(creds: registrationCredentials): Promise<[boolean, string, string]> {
     
-    let res = await axios.post('http://localhost:7000/auth/create', creds, {
+    let res = await axios.post('http://localhost:7000/auth/register', creds, {
         headers: {
             "Content-Type": "application/json"
         },
@@ -39,6 +39,7 @@ export async function attemptRegister(creds: registrationCredentials): Promise<[
         return [true, 'OK', 'OK']
     }
     else if (res.status === 400) {
+        console.log(res.data)
         return [false, res.data.errorMsg, res.data.pointOfError]
     }
     else {
