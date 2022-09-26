@@ -29,7 +29,7 @@ export function getLoadLilacAuth(clientId: string, scopes: string, redirectUri: 
     })
     currentClient = client;
 
-    //return client;
+    return client;
 }
 
 interface youtubeVideoThumbnailProps {

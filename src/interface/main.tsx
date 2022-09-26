@@ -5,6 +5,7 @@ import {BsCloudDownloadFill, BsFillPlusCircleFill, BsFolderFill} from 'react-ico
 import styled, {keyframes} from "styled-components";
 import { getLoadLilacAuth, requestClientCode } from "../server/lylacServer";
 import { useEffect } from "react";
+import { BackAnchor } from "./backAnchor";
 
 const gradient = keyframes`
 {
@@ -42,11 +43,11 @@ export function MainInterface() {
 		items={[
                 {
                     text: 'Downloader',
-                    view: <AnimatedGradient>
+                    view: <BackAnchor>
 						<Button onClick={_ => requestClientCode()}>
 							finna prompt the code
 						</Button>
-					</AnimatedGradient>,
+					</BackAnchor>,
                     icon: BsCloudDownloadFill
                 },
                 {
