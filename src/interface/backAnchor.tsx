@@ -39,7 +39,7 @@ export function BackAnchor(props: anchorProps) {
                 isOpen={isOpen}
                 onOpen={onOpen}
                 onClose={onClose}
-                placement='left'
+                placement='left-start'
                 closeOnBlur={false}
             >
                 <PopoverTrigger>
