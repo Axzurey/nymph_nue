@@ -6,6 +6,7 @@ import styled, {keyframes} from "styled-components";
 import { getLoadLilacAuth, requestClientCode } from "../server/lylacServer";
 import { useEffect } from "react";
 import { BackAnchor } from "./backAnchor";
+import { CreatePlaylistView } from "../views/createPlaylistView";
 
 const gradient = keyframes`
 {
@@ -57,7 +58,7 @@ export function MainInterface() {
                 },
                 {
                     text: 'Create Playlist',
-                    view: <AnimatedGradient/>,
+                    view: <CreatePlaylistView/>, //popup!
                     icon: BsFillPlusCircleFill
                 }
             ]}
