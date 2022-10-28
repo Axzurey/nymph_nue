@@ -47,17 +47,21 @@ export function CreatePlaylistView() {
             }}
         >
             <FocusLock returnFocus persistentFocus={false}>
-                {
-                    creationState === PlaylistCreationState.PROMPT_TYPE ?
-                    <CreatePlaylistTypePrompt onSelectOption={(p) => {
-                        setSelectionOption(p);
-                        setCreationState(PlaylistCreationState.DETAILS)
-                    }}></CreatePlaylistTypePrompt> 
-                    :
-                    creationState === PlaylistCreationState.DETAILS ?
-                    <CreatePlaylistInformationPrompt onDone={() => {}}></CreatePlaylistInformationPrompt>
-                    : undefined
-                }
+                    <Center width='90vw' height='90vh'>
+                        <ChakraDiv backgroundColor='blue.500'>
+                            {
+                                creationState === PlaylistCreationState.PROMPT_TYPE ?
+                                <CreatePlaylistTypePrompt onSelectOption={(p) => {
+                                    setSelectionOption(p);
+                                    setCreationState(PlaylistCreationState.DETAILS)
+                                }}></CreatePlaylistTypePrompt> 
+                                :
+                                creationState === PlaylistCreationState.DETAILS ?
+                                <CreatePlaylistInformationPrompt onDone={() => {}}></CreatePlaylistInformationPrompt>
+                                : undefined
+                            }
+                        </ChakraDiv>
+                    </Center>
             </FocusLock>
         </ChakraDiv>
     )
